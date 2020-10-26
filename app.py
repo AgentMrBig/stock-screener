@@ -1,4 +1,5 @@
 import os, csv
+import datetime
 import yfinance as yf
 import pandas as pd
 import talib
@@ -55,7 +56,7 @@ def snapshot():
     companies = f.read().splitlines()
     for company in companies:
       symbol = company.split(',')[0]
-      df = yf.download(symbol, start="2020-01-01", end="2020-08-01")
+      df = yf.download(symbol, start="2020-01-01", end=datetime.date.today())
       df.to_csv('datasets/daily/{}.csv'.format(symbol))
   return{
     'code': 'success'
